@@ -128,7 +128,9 @@ def run_bot():
     for cmd in COMMAND_MAP:
         application.add_handler(CommandHandler(cmd, handle_numbered_command))
 
-    application.run_polling(close_loop=False)
+    # stop_signals=None is required because this runs in a background thread,
+    # not the main thread — signal handlers can only be installed there.
+    application.run_polling(close_loop=False, stop_signals=None)
 
 
 if __name__ == "__main__":
