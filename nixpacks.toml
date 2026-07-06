@@ -1,0 +1,11 @@
+[phases.setup]
+# Only keep "chromium" here if OTHER scripts in your repo run selenium
+# directly on Railway. creator.exe itself now runs on your Windows PC
+# via bridge.py, so it doesn't need Chromium/Wine on Railway at all.
+nixPkgs = ["chromium", "python311"]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt --break-system-packages"]
+
+[start]
+cmd = "python main.py"
